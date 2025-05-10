@@ -1,9 +1,19 @@
 import streamlit as st
 import random
 
-# Function to generate a random trip duration between 0 and 10 minutes
+# List of actual station names
+stations = [
+    "Sterling Pl & Franklin Ave", "Caton Ave & Bedford Ave",
+    "Ocean Ave & Crooke Ave", "Broadway & W 41 St", "St Marks Pl & 2 Ave",
+    "Isham St & Broadway", "Dyckman St & Staff St", "W 111 St & 5 Ave",
+    "W 52 St & 5 Ave", "Rogers Ave & Sterling St", "Court St & State St",
+    "4488.08 Adams St & Prospect St", "President St & 4 Ave",
+    "4101.17 E 1 St & Bowery", "Underhill Ave & Pacific St",
+    "Prospect Pl & Underhill Ave", "Ave & W 131 St", "W54 St & 11 Ave"
+]
+
+# Function to generate a random trip duration
 def predict_trip_duration(start_station, end_station, rideable_type):
-    # You can later modify this logic to use actual ML models
     return round(random.uniform(0, 10), 2)
 
 # Streamlit App
@@ -12,8 +22,8 @@ def main():
 
     st.markdown("### Enter the trip details:")
 
-    start_station = st.selectbox("Start Station", ["Station A", "Station B", "Station C"])
-    end_station = st.selectbox("End Station", ["Station A", "Station B", "Station C"])
+    start_station = st.selectbox("Start Station", stations)
+    end_station = st.selectbox("End Station", stations)
     rideable_type = st.selectbox("Rideable Type", ["Classic Bike", "Electric Bike"])
 
     if st.button("Predict Trip Duration"):

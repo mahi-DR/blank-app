@@ -1,30 +1,27 @@
 import streamlit as st
-import pandas as pd
 import random
 
-# Function to make random predictions between 0 and 10
-def make_predictions(features):
-    prediction = round(random.uniform(0, 10), 2)
-    return prediction
+# Function to generate a random trip duration between 0 and 10 minutes
+def predict_trip_duration(start_station, end_station, rideable_type):
+    # You can later modify this logic to use actual ML models
+    return round(random.uniform(0, 10), 2)
 
-# Streamlit UI
+# Streamlit App
 def main():
-    st.title("Citi Bike Trip Duration Prediction (Mock)")
+    st.title("Mock Citi Bike Trip Duration Predictor")
 
-    st.markdown("Enter the details of the bike trip:")
+    st.markdown("### Enter the trip details:")
 
-    # User inputs for prediction (example: pickup and drop-off data)
-    start_station = st.selectbox("Start Station", ["Station 1", "Station 2", "Station 3"])  # Add real stations
+    start_station = st.selectbox("Start Station", ["Station A", "Station B", "Station C"])
+    end_station = st.selectbox("End Station", ["Station A", "Station B", "Station C"])
     rideable_type = st.selectbox("Rideable Type", ["Classic Bike", "Electric Bike"])
-    trip_duration = st.number_input("Trip Duration (Minutes)", min_value=0)
 
-    # When the user clicks the "Predict" button
-    if st.button("Predict"):
-        # Example feature vector (not used here, but kept for structure)
-        features = [start_station, rideable_type, trip_duration]
-        
-        prediction = make_predictions(features)
-        st.success(f"Predicted Trip Duration: {prediction} minutes")
+    if st.button("Predict Trip Duration"):
+        if start_station == end_station:
+            st.warning("Start and end stations cannot be the same.")
+        else:
+            predicted_duration = predict_trip_duration(start_station, end_station, rideable_type)
+            st.success(f"Predicted Trip Duration: {predicted_duration} minutes")
 
 if __name__ == "__main__":
     main()

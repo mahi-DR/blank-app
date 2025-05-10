@@ -12,11 +12,11 @@ stations = [
     "Prospect Pl & Underhill Ave", "Ave & W 131 St", "W54 St & 11 Ave"
 ]
 
-# Function to generate a trip duration
+# Function to generate trip duration
 def predict_trip_duration(start_station, end_station, rideable_type):
     if start_station == end_station:
         return 0.0
-    return round(random.uniform(0, 10), 2)
+    return round(random.uniform(4, 10), 2)
 
 # Streamlit App
 def main():

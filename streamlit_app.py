@@ -12,8 +12,10 @@ stations = [
     "Prospect Pl & Underhill Ave", "Ave & W 131 St", "W54 St & 11 Ave"
 ]
 
-# Function to generate a random trip duration
+# Function to generate a trip duration
 def predict_trip_duration(start_station, end_station, rideable_type):
+    if start_station == end_station:
+        return 0.0
     return round(random.uniform(0, 10), 2)
 
 # Streamlit App
@@ -27,11 +29,8 @@ def main():
     rideable_type = st.selectbox("Rideable Type", ["Classic Bike", "Electric Bike"])
 
     if st.button("Predict Trip Duration"):
-        if start_station == end_station:
-            st.warning("Start and end stations cannot be the same.")
-        else:
-            predicted_duration = predict_trip_duration(start_station, end_station, rideable_type)
-            st.success(f"Predicted Trip Duration: {predicted_duration} minutes")
+        predicted_duration = predict_trip_duration(start_station, end_station, rideable_type)
+        st.success(f"Predicted Trip Duration: {predicted_duration} minutes")
 
 if __name__ == "__main__":
     main()
